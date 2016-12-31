@@ -34,7 +34,7 @@ $(function() {
         it('url should be defined and not empty', function(){
             for (var i = allFeeds.length - 1; i >= 0; i--) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url).not.toBe(0);
+                expect(allFeeds[i].url.length).not.toBe(0);
             }
         });
 
@@ -61,7 +61,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
          it('should hide the menu element by default',function() {
-            expect($('body').attr('class')).toContain('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
          });
 
 
@@ -74,11 +74,11 @@ $(function() {
                 
                 //1. Click the menu icon should show the menu
                 $('.menu-icon-link').click();
-                expect($('body').attr('class')).not.toContain('menu-hidden');
+                expect($('body').hasClass('menu-hidden')).toBe(false);
 
                 //2. Click the menu icon should hide the menu
                 $('.menu-icon-link').click();
-                expect($('body').attr('class')).toContain('menu-hidden');
+                expect($('body').hasClass('menu-hidden')).toBe(true);
           });
     
 
@@ -98,8 +98,7 @@ $(function() {
          });
 
          it('should have at least one single entry after the loadFeed function is done', function() {
-            expect($('.feed').length).not.toBe(0);
-            expect($('.entry').length).not.toBe(0);
+            expect($('.feed .entry').length).not.toBe(0);
             
         });
     });
